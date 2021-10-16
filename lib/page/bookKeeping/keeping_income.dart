@@ -7,6 +7,7 @@ import 'package:flutter_bookkeeping/test/bookKeeping_database_test.dart';
 import 'package:flutter_bookkeeping/util/DbHelper.dart';
 import 'package:flutter_bookkeeping/weight/bookKeeping/beiZhuTextControllerWeight.dart';
 import 'package:flutter_bookkeeping/weight/bookKeeping/keepTextControllerWeight.dart';
+import 'package:flutter_bookkeeping/weight/bookKeeping/keepInvoiceControllerWeight.dart';
 import 'package:flutter_bookkeeping/weight/bookKeeping/timeTextControllerWeight.dart';
 import '../../constantWr.dart';
 import 'calculator.dart';
@@ -40,10 +41,13 @@ class _KeepIncomeState extends State<KeepIncome> {
   // 是否有变化的分类管理
   bool isOnTap = false;
 
-  // 记账钱数
+  // 記帳金額
   final _keepTextController = TextEditingController();
 
-  //  备注
+  // 20211011 add by Jonathan 發票號碼
+  final _keepInvoiceController = TextEditingController();
+
+  //  備註
   final _beiZhuTextController = TextEditingController();
 
   //  日期
@@ -53,6 +57,7 @@ class _KeepIncomeState extends State<KeepIncome> {
   double _keepText = 0.00;
   String _beiZhuText = '';
   String _timeText = '';
+  String _invoiceText = '';
 
   List<Catetory> _historyWords = CategoryImage.inComeCategory;
 
@@ -68,6 +73,7 @@ class _KeepIncomeState extends State<KeepIncome> {
     setState(() {
       _keepText = 0.00;
       _beiZhuText = _beiZhuTextController.text;
+      _invoiceText = _keepInvoiceController.text;
       _timeText = _timeTextController.text;
       curImageNumString = '';
       curCategoryName = '';
@@ -97,6 +103,7 @@ class _KeepIncomeState extends State<KeepIncome> {
               children: <Widget>[
                 ImageListWidget(context),
                 KeepTextControllerWeight(_keepTextController),
+                KeepInvoiceControllerWeight(_keepInvoiceController),
                 TimeTextControllerWeight(_timeTextController),
                 BeiZhuTextControllerWeight(_beiZhuTextController),
                 _storeButton(),
@@ -174,7 +181,7 @@ class _KeepIncomeState extends State<KeepIncome> {
                     MaterialPageRoute(
                         builder: (context) => CategoryHomePage()));
               },
-              child: Text("分类管理"),
+              child: Text("分類管理"),
               color: Theme.of(context).accentColor,
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
@@ -194,19 +201,25 @@ class _KeepIncomeState extends State<KeepIncome> {
                 double.parse(_keepTextController.text) == 0.00
                     ? 0.00
                     : double.parse(_keepTextController.text);
+                String _invoiceText = _keepInvoiceController.text == ''
+                    ? 'Non'
+                    : _keepInvoiceController.text;
+
                 String _beiZhuText = _beiZhuTextController.text == ''
-                    ? '无'
+                    ? '無'
                     : _beiZhuTextController.text;
                 print(_beiZhuText);
                 String _timeText = _timeTextController.text;
                 print(_timeText);
 
+                // modify by Jonathan 新增發票號碼
                 KeepRecord keepRecord = new KeepRecord(curCategoryName, 0,
-                    _timeText, curImageNumString, _beiZhuText, _keepText);
+                    _timeText, curImageNumString, _beiZhuText, _keepText ,'123'); //_invoiceText
                 var id = await KeepDbHelper.insert(keepRecord);
 
                 // 清空输入框
                 _keepTextController.clear();
+                _keepInvoiceController.clear();
                 _timeTextController.clear();
                 _beiZhuTextController.clear();
 

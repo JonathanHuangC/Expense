@@ -14,8 +14,10 @@ class YearItem extends StatelessWidget {
       trailing: Icon(Icons.arrow_right),
       onTap: () async {
         List<KeepRecord> list = await KeepDbHelper.queryYear();
+        double income = await KeepDbHelper.queryWeekIncome('1','Y');
+        double outcome = await KeepDbHelper.queryWeekIncome('0','Y');
         Navigator.push(context,
-            CupertinoPageRoute(builder: (context) => YearDetail(list: list)));
+            CupertinoPageRoute(builder: (context) => YearDetail(list: list,income:income,outcome:outcome,)));
       },
     );
   }

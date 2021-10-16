@@ -12,13 +12,15 @@ class MonthItem extends StatelessWidget {
 
     return ListTile(
       title: Text("本月"),
-      subtitle: Text("9月1日 - 9月30日"),
+      subtitle: Text("10月1日 - 10月31日"), //Jonathan 月份要改成連動的方式
       leading: Icon(Icons.calendar_view_month, color: Colors.blueAccent),
       trailing: Icon(Icons.arrow_right),
       onTap: () async {
         List<KeepRecord> list = await KeepDbHelper.queryMonth();
+        double income = await KeepDbHelper.queryWeekIncome('1','M');
+        double outcome = await KeepDbHelper.queryWeekIncome('0','M');
         Navigator.push(context,
-            CupertinoPageRoute(builder: (context) => MonthDetail(list: list)));
+            CupertinoPageRoute(builder: (context) => MonthDetail(list: list,income:income,outcome:outcome,)));
       },
     );
   }

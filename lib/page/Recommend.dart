@@ -53,11 +53,11 @@ class _RecommendPageState extends State<RecommendPage> {
       child: ListView(
         children: <Widget>[
           _buildImgsCarouselWidget(),
-          _buildSubfieldTitle('书籍推荐'),
+          _buildSubfieldTitle('書籍推薦'),
           _buildBooksWidget(),
-          _buildSubfieldTitle('优质课程'),
+          _buildSubfieldTitle('優質課程'),
           _buildCourseWidget(),
-          _buildSubfieldTitle('公众号'),
+          _buildSubfieldTitle('公眾號'),
           _buildOfficialAccountWidget(),
           _buildSubfieldTitle('工具'),
           _buildToolsWidget(),

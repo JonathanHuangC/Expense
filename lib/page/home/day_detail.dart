@@ -4,17 +4,19 @@ import 'package:flutter_bookkeeping/page/home/image_item/image_item.dart';
 import 'package:flutter_bookkeeping/page/home/record_item.dart';
 
 class DayDetail extends StatelessWidget {
-  DayDetail({this.list});
+  DayDetail({this.list, this.income, this.outcome});
 
   final List<KeepRecord> list;
+  final double income;
+  final double outcome;
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> items = [
       ImageItem(
         imageUrl: 'assets/home_bg_2.jpg',
-        expendQuota: 0.00,
-        incomeQuota: 0.00,
+        expendQuota: this.income,
+        incomeQuota: this.outcome,
       ),
     ];
 
@@ -26,13 +28,14 @@ class DayDetail extends StatelessWidget {
             category: record.recordCategoryName,
             remark: record.recordTime,
             imageUrl: record.recordImage,
-            quota: record.recordNumber),
+            quota: record.recordNumber,
+            invoice: record.recordInvoice),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("今日账单"),
+        title: Text("今日帳單"),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: ListView.separated(

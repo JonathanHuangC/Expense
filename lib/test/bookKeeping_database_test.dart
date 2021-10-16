@@ -96,9 +96,9 @@ class _BookKeepingDdatabaseTestState extends State<BookKeepingDdatabaseTest> {
   void _addToDb() async {
     String task = textController.text;
 
-    KeepRecord keepRecord = new KeepRecord('餐饮',1,'2021-8-15','assets/canyin.png','这是餐饮的第一条数据',20);
-    KeepRecord keepRecord2 = new KeepRecord('服饰',1,'2021-8-15','assets/fushi-_1.png','这是服饰的第一条数据',102);
-    KeepRecord keepRecord3 = new KeepRecord('零食',1,'2021-8-15','assets/lingshi_2.png','这是零食的第一条数据',20);
+    KeepRecord keepRecord = new KeepRecord('餐饮',1,'2021-10-14','assets/canyin.png','这是餐饮的第一条数据',20,'test');
+    KeepRecord keepRecord2 = new KeepRecord('服饰',1,'2021-10-14','assets/fushi-_1.png','这是服饰的第一条数据',102,'test');
+    KeepRecord keepRecord3 = new KeepRecord('零食',1,'2021-10-14','assets/lingshi_2.png','这是零食的第一条数据',20,'test');
 
     var id = await KeepDbHelper.insert(keepRecord);
     var id1 = await KeepDbHelper.insert(keepRecord2);

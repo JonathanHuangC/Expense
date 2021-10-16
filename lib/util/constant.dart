@@ -41,6 +41,9 @@ class KeepTable {
   static final String recordCategoryNum = "record_category_num";
 //记录时间
   static final String recordTime = "record_time";
+  //紀錄發票號碼
+  static final String recordInvoice = "record_invoice";
+
 }
 
 //年度列表

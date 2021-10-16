@@ -21,12 +21,14 @@ class KeepRecord {
   String recordRemarks;
   // 记录创建的时间
   String recordTime;
+  // 紀錄發票號碼
+  String recordInvoice;
 
   KeepRecord(this.recordCategoryName, this.recordCategoryNum, this.recordTime,
-      this.recordImage, this.recordRemarks, this.recordNumber,
+      this.recordImage, this.recordRemarks, this.recordNumber,this.recordInvoice,
       {this.id});
 
-  //  格式转换
+  //  格式轉換
   static KeepRecord fromMap(Map<String, dynamic> map) => KeepRecord(
       map[KeepTable.recordCategoryName],
       map[KeepTable.recordCategoryNum],
@@ -34,19 +36,20 @@ class KeepRecord {
       map[KeepTable.recordImage],
       map[KeepTable.recordRemarks],
       map[KeepTable.recordNumber],
+      map[KeepTable.recordInvoice], //Jonathan 20211011 新增發票號碼
       id: map[KeepTable.recordId]
   );
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       KeepTable.recordCategoryName: this.recordCategoryName,
-
       KeepTable.recordCategoryNum: this.recordCategoryNum,
       KeepTable.recordTime:
       this.recordTime ?? DateTime.now().millisecondsSinceEpoch,
       KeepTable.recordImage: this.recordImage,
       KeepTable.recordRemarks:this.recordRemarks,
       KeepTable.recordNumber:this.recordNumber,
+      KeepTable.recordInvoice:this.recordInvoice,//Jonathan 20211011 新增發票號碼
     };
     if (this.id != null) map[KeepTable.recordId] = this.id;
     return map;

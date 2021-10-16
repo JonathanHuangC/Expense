@@ -59,6 +59,7 @@ class DbHelper {
             "${CategoryTable.CATEGORY_NAME} TEXT, "
             "${CategoryTable.CATEGORY_BELON} INTEGER, "
             "${CategoryTable.CATEGORY_IMAGE_NUM} TEXT)"
+
     );
 
     // await db.execute('CREATE TABLE ${KeepTable.TABLE_NAME}'
@@ -81,7 +82,8 @@ class DbHelper {
             "${KeepTable.recordTime} TEXT, "
             "${KeepTable.recordImage} TEXT, "
             "${KeepTable.recordRemarks} TEXT, "
-            "${KeepTable.recordNumber} REAL)"
+            "${KeepTable.recordNumber} REAL, "
+            "${KeepTable.recordInvoice} TEXT)" //Jonathan 20211011 新增發票號碼
     );
     print("收支记录表创建完毕");
     return ;
@@ -104,7 +106,7 @@ class DbHelper {
     } catch (e) {
       print(e);
     }
-    print("数据${catetory.category_name}已存入数据库");
+    print("數據${catetory.category_name}已存入數據庫");
     return catetory;
   }
 

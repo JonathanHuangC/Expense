@@ -9,6 +9,7 @@ import 'package:flutter_bookkeeping/model/keepSetting/keep_record.dart';
 import 'package:flutter_bookkeeping/test/bookKeeping_database_test.dart';
 import 'package:flutter_bookkeeping/weight/bookKeeping/beiZhuTextControllerWeight.dart';
 import 'package:flutter_bookkeeping/weight/bookKeeping/keepTextControllerWeight.dart';
+import 'package:flutter_bookkeeping/weight/bookKeeping/KeepInvoiceControllerWeight.dart';
 import 'package:flutter_bookkeeping/weight/bookKeeping/timeTextControllerWeight.dart';
 import 'package:flutter_pickers/pickers.dart';
 import 'calculator.dart';
@@ -44,10 +45,13 @@ class _KeepExpenditureState extends State<KeepExpenditure> {
   // 是否有变化的分类管理
   bool isOnTap = false;
 
-  // 记账钱数
+  // 記帳金額
   final _keepTextController = TextEditingController();
 
-  //  备注
+  // 20211011 add by Jonathan 發票號碼
+  final _keepInvoiceController = TextEditingController();
+
+  //  備註
   final _beiZhuTextController = TextEditingController();
 
   //  日期
@@ -102,6 +106,7 @@ class _KeepExpenditureState extends State<KeepExpenditure> {
               children: <Widget>[
                 ImageListWidget(),
                 KeepTextControllerWeight(_keepTextController),
+                KeepInvoiceControllerWeight(_keepInvoiceController), // add by Jonathan 20211013 加入發票號碼
                 TimeTextControllerWeight(_timeTextController),
                 BeiZhuTextControllerWeight(_beiZhuTextController),
                 _storeButton(),
@@ -116,7 +121,7 @@ class _KeepExpenditureState extends State<KeepExpenditure> {
   Widget ImageListWidget() {
     return Wrap(
       spacing: 23, //主轴上子控件的间距
-      runSpacing: 15, //交叉轴上子控件之间的间距
+      runSpacing: 10, //交叉轴上子控件之间的间距
       children: _listView(), //要显示的子控件集合
     );
   }
@@ -205,15 +210,21 @@ class _KeepExpenditureState extends State<KeepExpenditure> {
                 String _beiZhuText = _beiZhuTextController.text == ''
                     ? '无'
                     : _beiZhuTextController.text;
+                String _InvoiceText = _keepInvoiceController.text == ''
+                    ? 'Non'
+                    : _keepInvoiceController.text;
+
                 print(_beiZhuText);
                 String _timeText = _timeTextController.text;
                 print(_timeText);
 
+                // modify by Jonathan 新增發票號碼
                 KeepRecord keepRecord = new KeepRecord(curCategoryName, 1,
-                    _timeText, curImageNumString, _beiZhuText, _keepText);
+                    _timeText, curImageNumString, _beiZhuText, _keepText, _InvoiceText);
                 var id = await KeepDbHelper.insert(keepRecord);
                 // 清空输入框
                 _keepTextController.clear();
+                _keepInvoiceController.clear();
                 _timeTextController.clear();
                 _beiZhuTextController.clear();
 

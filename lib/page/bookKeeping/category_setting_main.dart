@@ -29,7 +29,7 @@ class CategoryHomePage extends StatelessWidget {
     return new WillPopScope(
       child: new TabBarWidget(
         drawer: new HomeDrawer(),
-        title: new Text("类别管理"),
+        title: new Text("類別管理"),
         type: TabBarWidget.TOP_TAB,
         tabItems: tabs,
         tabViews: [
@@ -239,7 +239,7 @@ class _HomeDrawer extends State<HomeDrawer> {
       elevation: 14,
       child: Scaffold(
         appBar: new AppBar(
-          title: new Text("类别图片管理"),
+          title: new Text("類別圖片管理"),
           elevation: 50,
         ),
         body: new Text("Drawer"),

@@ -16,12 +16,16 @@ class RecordItem extends StatelessWidget {
   // 额度
   final double quota;
 
+  //add by Jonathan 20211014 發票號碼
+  final String invoice;
+
   RecordItem({
     @required this.recordType,
     @required this.category,
     @required this.remark,
     @required this.imageUrl,
     @required this.quota,
+    @required this.invoice,
   });
 
   @override
@@ -34,7 +38,8 @@ class RecordItem extends StatelessWidget {
           imageUrl.length == 0 ? 'assets/chongwumaomi.png' : imageUrl,
           fit: BoxFit.contain),
       trailing: Text(
-        quota.toStringAsFixed(2),
+        //invoice != null ?invoice : quota.toStringAsFixed(1),
+        recordType.toString() + '    ' + invoice + '   ' + quota.toStringAsFixed(1),
         style: TextStyle(color: recordType == 1 ? Colors.green : Colors.red),
       ),
     );

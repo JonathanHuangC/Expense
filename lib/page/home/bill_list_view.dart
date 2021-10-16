@@ -19,7 +19,8 @@ class BillListView extends StatelessWidget {
       DayItem(),
       WeekItem(),
       MonthItem(),
-      YearItem()
+      YearItem(),
+
     ];
 
     return ListView.separated(

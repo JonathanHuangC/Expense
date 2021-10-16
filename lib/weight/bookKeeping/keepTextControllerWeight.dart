@@ -51,7 +51,7 @@ class _KeepTextControllerWeightState extends State<KeepTextControllerWeight> {
                       Radius.circular(20), //边角为30
                     ),
                     borderSide: BorderSide(
-                      color: Colors.blue, //边线颜色为黄色
+                      color: Colors.blue, //边线颜色为藍色
                       width: 2, //边线宽度为2
                     ),
                   ),
@@ -60,7 +60,7 @@ class _KeepTextControllerWeightState extends State<KeepTextControllerWeight> {
                     color: Colors.lightBlue, //边框颜色为绿色
                     width: 2, //宽度为5
                   )),
-                  labelText: "请输入钱数",
+                  labelText: "請輸入金額:",
                   helperStyle: TextStyle(color: Colors.red),
                   prefixIconConstraints: BoxConstraints(),
                   prefixIcon: InkWell(

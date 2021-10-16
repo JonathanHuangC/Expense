@@ -40,7 +40,7 @@ class _BookkeepingPageState extends State<BookkeepingPage> {
       length: myTabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("记一笔", textAlign: TextAlign.center),
+          title: Text("記一筆", textAlign: TextAlign.center),
           bottom: TabBar(tabs: myTabs),
           backgroundColor: Theme.of(context).primaryColor,
           automaticallyImplyLeading: false,
